@@ -10,7 +10,12 @@
             <h2>Title: {{ $album->title }}</h2>
             <p>Artist: {{ $album->artist }}</p>
             <p>Year: {{ $album->year }}</p>
-            <a href="{{ route('albums.show', $album)}}">Show</a>
+            <div>
+              <a href="{{ route('albums.show', $album)}}">Show</a>
+            </div>
+            <div>
+              <a href="{{ route('albums.edit', $album)}}">Edit</a>
+            </div>
           </div>
         @endforeach
       </div>

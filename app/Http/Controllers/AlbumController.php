@@ -59,9 +59,9 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Album $album)
     {
-        //
+        return view('albums.edit',compact('album'));
     }
 
     /**
@@ -71,9 +71,16 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Album $album)
     {
-        //
+      // prende tutti idati del form (sia che siano stati cambiati o no)
+    $data_request = $request->all();
+
+    // sostituisce i dati del database con quelli appena presi dal form
+    $album->update($data_request);
+
+    // passa i nuovi dati alla pagina view pr vedere i cambiamenti
+    return redirect()->route('albums.show',$album);
     }
 
     /**

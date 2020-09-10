@@ -16,8 +16,8 @@ class CreateAlbumCategoryTable extends Migration
         Schema::create('album_category', function (Blueprint $table) {
           $table->unsignedBigInteger('album_id');
           $table->foreign('album_id')->references('id')->on('albums');
-          $table->unsignedBigInteger('categories_id');
-          $table->foreign('categories_id')->references('id')->on('categories');
+          $table->unsignedBigInteger('category_id');
+          $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

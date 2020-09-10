@@ -50,6 +50,7 @@ class AlbumController extends Controller
      */
     public function show(Album $album)
     {
+        dd($album->categories);
         return view('albums.show', compact('album'));
     }
 

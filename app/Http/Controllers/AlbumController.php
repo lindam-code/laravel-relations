@@ -83,7 +83,12 @@ class AlbumController extends Controller
     $data_request = $request->all();
 
     // sincronizza le categorie in base a quelle scelte nel form
-    $album->categories()->sync($data_request['categories']);
+    // se non scelgo nessuna categoria passo un array vuoto alla eio_sync
+    if (isset($data_request['categories'])) {
+      $album->categories()->sync($data_request['categories']);
+    } else {
+      $album->categories()->sync([]);
+    }
 
     // sostituisce i dati del database con quelli appena presi dal form
     $album->update($data_request);

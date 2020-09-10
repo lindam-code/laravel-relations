@@ -4,11 +4,22 @@
     <h1>Title: {{ $album->title }}</h1>
     <p>Artist: {{ $album->artist }}</p>
     <p>Year: {{ $album->year }}</p>
+
     <div class="music_container">
       <div class="cover_column">
         <h2>Cover</h2>
         <img class="cover_image" src="{{ $album->images->url }}" alt=" {{ $album->title }} ">
       </div>
+
+      @if (!$album->categories->isEmpty())
+        <div class="categories">
+          <h2>Categorie</h2>
+          @foreach ($album->categories as $category)
+            <p>{{ $category->name }}</p>
+          @endforeach
+        </div>
+      @endif
+
       <div class="songs_list_column">
         <h2>Song's list</h2>
 

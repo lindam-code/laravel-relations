@@ -20,6 +20,15 @@
   </div>
 
   <div>
+    @foreach ($categories as $category)
+      <div>
+        <input type="checkbox" name="categories[]" {{ ($album->categories->contains($category)) ? 'checked' : '' }} value="{{ $category->id}}">
+        <span>{{ $category->name }}</span>
+      </div>
+    @endforeach
+  </div>
+
+  <div>
     <input type="submit" value="Save">
   </div>
 </form>

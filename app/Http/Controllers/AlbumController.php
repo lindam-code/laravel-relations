@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Album;
 use App\Image;
+use App\Category;
 
 class AlbumController extends Controller
 {
@@ -61,7 +62,12 @@ class AlbumController extends Controller
      */
     public function edit(Album $album)
     {
-        return view('albums.edit',compact('album'));
+        $categories = Category::all();
+
+        return view('albums.edit', [
+          'album' => $album,
+          'categories' => $categories,
+        ]);
     }
 
     /**
@@ -75,6 +81,9 @@ class AlbumController extends Controller
     {
       // prende tutti idati del form (sia che siano stati cambiati o no)
     $data_request = $request->all();
+
+    // sincronizza le categorie in base a quelle scelte nel form
+    $album->categories()->sync($data_request['categories']);
 
     // sostituisce i dati del database con quelli appena presi dal form
     $album->update($data_request);
